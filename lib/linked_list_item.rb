@@ -15,15 +15,30 @@ class LinkedListItem
     raise ArgumentError, "can't next_item to self!" if self == lli
     @next_item = lli
   end
+  
+  # HERE'S HOW USING COMPARABLE WORKS:
+  # self less than other    => -1
+  # self equal to other     => 0
+  # self greater than other => 1
 
-  def <=>(anOther)
-    self.payload <=> anOther.payload
-    self.payload.to_s <=> anOther.payload.to_s
+  def <=>(other)
+    if self.payload.class == other.payload.class  # Do the classes of the two payloads match?
+
+      self.payload <=> other.payload  # Since they match, compare them to each other
+                                      # Strings (alpha), Fixednum (number value), Symbol (alpha)
+
+    else # if the two payload classes don't match
+ 
+      self.payload.class.to_s <=> other.payload.class.to_s   # Convert the payload class to a string
+                                                             # Compare them by alphabetical name
+    end                                                      # class_precedence = [Fixnum, String, Symbol]
+  end                                                        # Ed Dean is a freakin' genius!
+
+  def ===(other)
+    self.object_id === other.object_id  # Makes the '===' continue working, despite above <=> code
   end
 
-  def ===(anOther)
-    self.object_id === anOther.object_id
-  end
 end
+
 
 
