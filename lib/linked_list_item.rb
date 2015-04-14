@@ -1,28 +1,29 @@
 class LinkedListItem
   include Comparable
-  attr_accessor :payload, :item, :next_item
+  attr_reader :payload
+  attr_reader :next_item
 
   def initialize(data)
     @payload = data
   end
 
-  def intialize(next_item)
-    @next_item = next_item
+  def last?
+    next_item.nil?  # Says 'look for the next item.  If there isn't one, you found the last item'
   end
 
+  def next_item=(lli)
+    raise ArgumentError, "can't next_item to self!" if self == lli
+    @next_item = lli
+  end
+
+  def <=>(anOther)
+    self.payload <=> anOther.payload
+    self.payload.to_s <=> anOther.payload.to_s
+  end
+
+  def ===(anOther)
+    self.object_id === anOther.object_id
+  end
 end
 
-# test_00a_triple_equals & test_01_item_stores_payload
-lli = LinkedListItem.new("foo")
-
-# test_01b_item_stores_payload
-lli = LinkedListItem.new("bar")
-
-# test_01_item_stores_payload
-lli1 = LinkedListItem.new("foo")
-lli2 = LinkedListItem.new("bar")
-
-# test_02a_add_next_item 
-# (Took out the "=nil" on the next_item initialization and changed to attr_accessor)
-lli1.next_item = lli2
 
