@@ -1,6 +1,7 @@
 class LinkedList
 
 
+  
 end
 
 
