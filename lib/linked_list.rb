@@ -1,25 +1,27 @@
 class LinkedList
-  attr_accessor :payload, :first_item, :item, :ll, :list, :value, :index, :push, :new, :get, :next_item
 
-  def initialize
-    ll = LinkedList.new
-  end
-
-  def initialize(data=nil)
-    @payload = data
-  end
-
-  def push(payload)
-    if self.payload == nil
-      @first_item = LinkedListItem.new(payload)
+  def get(nth_item)
+    if nth_item == 0
+      @first_item.payload
     else
-      @first_item = LinkedListItem.new(payload)
+      count = 0
+      current_node = @first_item
+      while count < nth_item
+        current_node = current_node.next_item
+        count = count + 1
+      end
+      current_node.payload
     end
   end
 
-  def get(value)
-    @value = first_item.payload  # I know this isn't right, but I am stumped!
-  end                            # Not sure if it's the way I've set up first_item
-                                 # but I just cannot get the index to work.
-                                 # SERIOUS RED CARD TIME!
+  def push(item)
+    if @first_item.nil?
+      @first_item = LinkedListItem.new(item)
+      @last_item = @first_item
+    else
+      @last_item.next_item = LinkedListItem.new(item)
+      @last_item = @last_item.next_item
+    end
+  end
 end
+
