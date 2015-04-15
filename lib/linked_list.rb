@@ -3,9 +3,9 @@ class LinkedListItem
     attr_reader :payload
     attr_reader :next_item
 
-   def initialize(data)
-     @payload = data
-   end
+#   def initialize(data)
+     #@payload = data
+   #end
 
    def last?
      next_item.nil?
@@ -30,7 +30,7 @@ class LinkedListItem
 end
 
 class LinkedList
-  attr_accessor :payload, :first_item, :list, :value, :index, :push, :new
+  attr_accessor :payload, :first_item, :list, :value, :index, :push, :new, :get
 
   def initialize(data=nil)
     @payload = data
@@ -43,4 +43,9 @@ class LinkedList
       puts "oranges"  # This is eventually going to be where @next_item goes
     end
   end
+
+  def get(value)
+    @value = first_item.payload  # I know this isn't right, but I am stumped!
+  end
+
 end
