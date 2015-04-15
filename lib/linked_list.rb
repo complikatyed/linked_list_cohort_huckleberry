@@ -30,7 +30,11 @@ class LinkedListItem
 end
 
 class LinkedList
-  attr_accessor :payload, :first_item, :list, :value, :index, :push, :new, :get
+  attr_accessor :payload, :first_item, :item, :ll, :list, :value, :index, :push, :new, :get, :next_item
+
+  def initialize
+    ll = LinkedList.new
+  end
 
   def initialize(data=nil)
     @payload = data
@@ -40,12 +44,13 @@ class LinkedList
     if self.payload == nil
       @first_item = LinkedListItem.new(payload)
     else
-      puts "oranges"  # This is eventually going to be where @next_item goes
+      @first_item = LinkedListItem.new(payload)
     end
   end
 
   def get(value)
     @value = first_item.payload  # I know this isn't right, but I am stumped!
-  end
-
+  end                            # Not sure if it's the way I've set up first_item
+                                 # but I just cannot get the index to work.
+                                 # SERIOUS RED CARD TIME!
 end
