@@ -6,7 +6,7 @@ Instructions
 
   1. Read about unit testing at the following links:
     * http://en.wikipedia.org/wiki/Test-driven_development
-    * http://www.extremeprogramming.org/rules/unittests.html
+    *http://www.extremeprogramming.org/rules/unittests.html
   2. Fork this repository and clone your fork
   3. cd into the linked-list-cohort-huckleberry folder on your computer
   3. Run `bundle install` to install MiniTest.
