@@ -1,9 +1,10 @@
 require_relative 'linked_list_item'
   
 class LinkedList
-  attr_accessor :first_item, :size, :last_item
+  attr_accessor :first_item, :size, :last_item, :payload
 
-  def initialize
+  def initialize(*payload)
+    @payload = payload
     @size = 0
     @first_item = nil
     @last_item = nil
@@ -52,11 +53,16 @@ class LinkedList
   end
 
   def to_s  # when 'll.to_s' is called, do these things:
-    if @size === 0  # If there aren't any items in the list
-      "| |"       # return the thing the test wants.
+    if @size === 0 && @first_item.payload == "nil"
+      "| |"
+
+    elsif @size === 0 && @first_item.payload != "nil"
+      "| #{@first_item.payload} |"
+
     elsif @size === 1
       current_item = @first_item
       "| #{@first_item.payload} |"
+      
     else
       string = ""
 
