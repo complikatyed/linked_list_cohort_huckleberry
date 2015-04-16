@@ -54,9 +54,16 @@ class LinkedList
   def to_s  # when 'll.to_s' is called, do these things:
     if @size === 0  # If there aren't any items in the list
       "| |"       # return the thing the test wants.
-    else
+    elsif @size === 1
       current_item = @first_item
-      string = current_item.payload
+      "| #{@first_item.payload} |"
+    else
+      string = ""
+
+      (@size -1).times do |i|
+        string << "#{get(i)}, "
+      end
+      string << "#{@last_item.payload}"
       "| #{string} |"
     end
   end
