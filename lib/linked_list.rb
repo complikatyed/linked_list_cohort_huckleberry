@@ -51,9 +51,13 @@ class LinkedList
     end
   end
 
-  def to_s
-    if size == 0  # If there aren't any items in the list, return the thing the test wants.
-      "| |"
+  def to_s  # when 'll.to_s' is called, do these things:
+    if @size === 0  # If there aren't any items in the list
+      "| |"       # return the thing the test wants.
+    else
+      current_item = @first_item
+      string = current_item.payload
+      "| #{string} |"
     end
   end
 
