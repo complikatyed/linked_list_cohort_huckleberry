@@ -5,8 +5,9 @@ class LinkedListTest < MiniTest::Unit::TestCase
 
   def test_05a_push_get
     ll = LinkedList.new
-    payload = "foo"
+    payload = "bob"
     ll.push(payload)
+    puts ll
     assert_equal(payload, ll.get(0))
   end
 
