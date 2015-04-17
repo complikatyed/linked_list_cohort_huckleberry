@@ -111,25 +111,15 @@ class LinkedList
 
 
   def to_s
-    if @size === 0 && self.payload == []
-      "| #{nil.to_s}|"
-
-    elsif @size === 0 && self.payload != []
-      "| #{self.payload.at(0)} |"
-
-    elsif @size === 1
-      current_node = @first_item
-      "| #{@first_item.payload} |"
-
-    else
-      string = ""
-
-      (@size -1).times do |i|
-        string << "#{get(i)}, "
-      end
-      string << "#{self.last_item.payload}"
-      "| #{string} |"
+    str = "| "
+    current_item = @first_item
+    until current_item.nil?
+      str << current_item.payload
+      punctuation = current_item.last? ? " " : ", "
+      current_item = current_item.next_item
     end
+    str << "|"
+    str
   end
 
 end
