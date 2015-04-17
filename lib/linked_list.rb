@@ -1,29 +1,37 @@
 require_relative 'linked_list_item'
 
 class LinkedList
-  attr_accessor :first_item, :size, :last_item, :value, :payload, :ll
-  
-  def initialize(*payload)  # Right now, this method is adding a nil value i
-    @first_item = LinkedListItem.new(payload)
-    @last_item = @first_item
-    @size = 1
+  attr_accessor :first_item, :size, :last_item, :value, :payload, :next_item
+ 
+  def new_item 
+    new_item = LinkedListItem.new(payload)
+  end
 
-    payload.each do |payload_item|
-      @last_item.next_item = LinkedListItem.new(payload)
-      @last_item = @last_item.next_item
+  def initialize(*payload)
+
+    # Do I need some kind of if statement here?
+    @first_item = new_item
+    @last_item = @first_item
+    @size = 0
+
+    payload.each do |i|
+      last_item = @first_item
+      until last_item.last?
+           last_item = @last_item.next_item
+      end
+      last_item.next_item = new_item
       @size += 1
     end
   end
 
   def push(payload)
     @payload = payload
-    
+        
     if @first_item.payload = []
-       @first_item.payload = @payload
-       @last_item = @first_item
-       @size += 1
+      @first_item.payload = self.payload
+       # @last_item = @first_item
     else
-      @last_item.next_item = LinkedListItem.new(@payload)
+      @last_item.next_item = new_item
       @last_item = @last_item.next_item
       @size += 1
     end
