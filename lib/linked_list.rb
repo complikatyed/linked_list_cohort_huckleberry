@@ -1,8 +1,8 @@
 require_relative 'linked_list_item'
-  
-class LinkedList
-  attr_accessor :first_item, :size, :last_item, :payload
 
+class LinkedList
+  attr_accessor :payload, :first_item, :size, :last_item, :value
+  
   def initialize(*payload)
     @payload = payload
     @size = 0
@@ -52,24 +52,24 @@ class LinkedList
     end
   end
 
-  def to_s  # when 'll.to_s' is called, do these things:
-    if @size === 0 && @first_item.payload == "nil"
-      "| |"
+  def to_s
+    if @size === 0 && self.payload == []
+      "| #{nil.to_s}|"
 
-    elsif @size === 0 && @first_item.payload != "nil"
-      "| #{@first_item.payload} |"
+    elsif @size === 0 && self.payload != []
+      "| #{self.payload.at(0)} |"
 
     elsif @size === 1
       current_item = @first_item
       "| #{@first_item.payload} |"
-      
+
     else
       string = ""
 
       (@size -1).times do |i|
         string << "#{get(i)}, "
       end
-      string << "#{@last_item.payload}"
+      string << "#{self.last_item.payload}"
       "| #{string} |"
     end
   end
