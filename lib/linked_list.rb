@@ -1,34 +1,29 @@
 require_relative 'linked_list_item'
 
 class LinkedList
-  attr_accessor :seed, :first_item, :size, :last_item, :value
+  attr_accessor :first_item, :size, :last_item, :value, :payload, :ll
+  
+  def initialize(*payload)  # Right now, this method is adding a nil value i
+    @first_item = LinkedListItem.new(payload)
+    @last_item = @first_item
+    @size = 1
 
-  def initialize(*seed)
-    @seed = seed
-    @size = 0
-    @first_item = nil
-    @last_item = nil
-
-    seed.each do |seed_item|
-      if @first_item.nil?
-        @first_item = LinkedListItem.new(seed)
-        @last_item = @first_item
-        @size += 1
-      else
-        @last_item.next_item = LinkedListItem.new(seed)
-        @last_item = @last_item.next_item
-        @size += 1
-      end
+    payload.each do |payload_item|
+      @last_item.next_item = LinkedListItem.new(payload)
+      @last_item = @last_item.next_item
+      @size += 1
     end
   end
 
   def push(payload)
-    if @first_item.nil?
-       @first_item = LinkedListItem.new(payload)
+    @payload = payload
+    
+    if @first_item.payload = []
+       @first_item.payload = @payload
        @last_item = @first_item
        @size += 1
     else
-      @last_item.next_item = LinkedListItem.new(payload)
+      @last_item.next_item = LinkedListItem.new(@payload)
       @last_item = @last_item.next_item
       @size += 1
     end
@@ -79,7 +74,7 @@ class LinkedList
       string = ""
 
       (@size -1).times do |i|
-        string << "#{self.payload.at(i)}, "
+        string << "#{get(i)}, "
       end
       string << "#{self.last_item.payload}"
       "| #{string} |"
