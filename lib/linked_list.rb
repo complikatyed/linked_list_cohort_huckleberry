@@ -31,13 +31,13 @@ require_relative 'linked_list_item'
 
 
 class LinkedList
-  attr_accessor :payload, :next_item, :size, :current_node
+  attr_accessor :payload, :next_item, :size, :stuff, :current_node
 
   def initialize(*payload)
     @size = 0
 
     payload.each do |payload|
-      push
+      push(payload)
     end
   end
 
@@ -51,14 +51,14 @@ class LinkedList
     @size += 1
     @last_item = new_item
   end
-  
+
   def get(index)
     # index number can't be less than zero, so IndexError gets raised
     raise IndexError, "Sorry, Charlie." if index < 0
 
     # if the index number given is not in the range of the index...
     raise IndexError, "Nope." if !(0..@size).include?(index)
-    
+
     if index == 0
       @first_item.payload
     else
@@ -77,46 +77,14 @@ class LinkedList
     end
   end
 
-#### Eliza's 2nd version of the to_s method #####
- 
-  #def to_s
-    #str = "| "
-    #current_item = @first_item
-    #until current_item.nil?
-      #str << current_item.payload
-      #punctuation = current_item.last? ? " " : ", "
-      #current_item = current_item.next_item
-    #end
-    #str << "|"
-    #str
-  #end
-
-
-# Eliza's 3rd version of the to_s method #####
-# COMING TOMORROW
-
-  #def to_s
-    #str = "| "
-    #current_item = @first_item
-    #until current_item.nil?
-      #str << current_item.payload
-      #punctuation = current_item.last? ? " " : ", "
-      #current_item = current_item.next_item
-    #end
-    #str << "|"
-    #str
-  #end
-
-###########################
-
-
   def to_s
     str = "| "
-    current_item = @first_item
-    until current_item.nil?
-      str << current_item.payload
-      punctuation = current_item.last? ? " " : ", "
-      current_item = current_item.next_item
+    current_node = @first_item
+    until current_node.nil?
+      str << current_node.payload
+      punctuation = current_node.last?  ? " " : ", "
+      str << punctuation
+      current_node = current_node.next_item
     end
     str << "|"
     str
