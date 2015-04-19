@@ -76,18 +76,11 @@ class LinkedList
     end
   end
 
-  def [](index)
-    if index == 0
-      @first_item.payload
-    else
-      current_node = @first_item
-      index.times do
-        raise IndexError, "Ooops" if current_node.nil? or current_node.last?
-        current_node = current_node.next_item
-      end
-      current_node.payload
-    end
-  end
+ def [](index)
+   get(index)
+ end
+
+
 
   def to_s
     str = "| "
