@@ -31,8 +31,7 @@ require_relative 'linked_list_item'
 
 
 class LinkedList
-  attr_accessor :payload, :next_item, :size, :stuff, :current_node
-
+  attr_accessor :payload, :next_item, :size, :ll
   def initialize(*payload)
     @size = 0
 
@@ -74,6 +73,19 @@ class LinkedList
   def last
     unless @last_item.nil?
       @last_item.payload
+    end
+  end
+
+  def [](index)
+    if index == 0
+      @first_item.payload
+    else
+      current_node = @first_item
+      index.times do
+        raise IndexError, "Ooops" if current_node.nil? or current_node.last?
+        current_node = current_node.next_item
+      end
+      current_node.payload
     end
   end
 
