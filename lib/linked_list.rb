@@ -31,7 +31,7 @@ require_relative 'linked_list_item'
 
 
 class LinkedList
-  attr_accessor :payload, :next_item, :size, :ll
+  attr_accessor :payload, :next_item, :size, :ll, :obj
   def initialize(*payload)
     @size = 0
 
@@ -76,10 +76,23 @@ class LinkedList
     end
   end
 
- def [](index)
-   get(index)
- end
+  def [](index)
+    get(index)
+  end
 
+  def []=(index, object)
+    get(index).replace object    # collects the current_node.payload
+    puts object
+    puts "#{get(index)}"
+  end
+
+  
+  # For test_12a and test_12b
+#
+#  I'm thinking shift and unshift, but not sure about syntax
+#  or about where to put it -- part of the [] method?
+#
+  #  ll[index] = get(index)
 
 
   def to_s
