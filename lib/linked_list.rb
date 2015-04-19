@@ -1,37 +1,8 @@
 require_relative 'linked_list_item'
 
-# A new LL can be created with  a payload or without...
-#
-# If the LL is created WITHOUT a seed-payload:
-#     1. the payload value for the newly created @first_object will be nil
-#     2. Some value needs to get pushed in later
-#     3. this @first_object is also the @last_item
-#
-# If the LL is created with ONE seed-payload:
-#     1. the @first_item's payload is created as the seed-payload value
-#     2. the created @first_item is also the @last_item
-#     3. the @first_item's payload value can be changed later with a push
-#
-# If the LL is created with MORE THAN ONE seed-payload item
-#     1. the @first_item's payload value is created using the first seed parameter
-#         ~ the @first_item that is created is also the @last_item
-#     2. each subsequent seed-payload value causes a new lli to be created
-#         ~ the seed-payload value becomes the new item's payload
-#         ~ each new item becomes the @last_item as it is created
-#
-# QUESTIONS:
-#
-# 1. Do I need to define the @first_item as a special node?
-# 2. Do I need three separate ways to create a new list, or can they be combined into one
-#    using if and elseif
-# 3. Can I query the number of parameters provided? If so, how?
-#
-#
-
-
 
 class LinkedList
-  attr_accessor :payload, :next_item, :size, :ll, :obj
+  attr_accessor :payload, :next_item, :size
   def initialize(*payload)
     @size = 0
 
@@ -70,6 +41,16 @@ class LinkedList
     end
   end
 
+  def delete(index)
+    get(index).delete(get(index))
+    @size -= 1
+  end
+
+
+
+
+
+
   def last
     unless @last_item.nil?
       @last_item.payload
@@ -81,19 +62,8 @@ class LinkedList
   end
 
   def []=(index, object)
-    get(index).replace object    # collects the current_node.payload
-    puts object
-    puts "#{get(index)}"
+    get(index).replace object
   end
-
-  
-  # For test_12a and test_12b
-#
-#  I'm thinking shift and unshift, but not sure about syntax
-#  or about where to put it -- part of the [] method?
-#
-  #  ll[index] = get(index)
-
 
   def to_s
     str = "| "
