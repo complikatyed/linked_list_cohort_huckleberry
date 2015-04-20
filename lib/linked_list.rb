@@ -24,13 +24,13 @@ class LinkedList
 
 
   def delete(index)
+    raise IndexError, "Nope." if !(0..@size).include?(index)
 
     if index == 0
       @first_item = @first_item.next_item  # This is passing test_13c_ (remove first item)
     else
       current_node = @first_item
       (index -1).times do
-      raise IndexError, "Ooops" if current_node.nil? or current_node.last?
         current_node = current_node.next_item
       end
       current_node.next_item = current_node.next_item.next_item
