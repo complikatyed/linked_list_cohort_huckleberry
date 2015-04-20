@@ -91,14 +91,14 @@ class LinkedList
   def index(value)
     index = 0
     current_node = @first_item
-    if @first_item.payload == value
-      index = 0
-    else
-      until current_node.nil? || current_node.payload == value
+    until current_node.nil? || current_node.payload == value
       current_node = current_node.next_item
       index += 1
-       end
-      index
+    end
+    if @size <= index
+      nil
+    else
+     index
     end
   end
   
