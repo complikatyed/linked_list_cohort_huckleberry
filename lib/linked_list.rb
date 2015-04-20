@@ -57,10 +57,9 @@ class LinkedList
     end
   end
 
-
-
-
-
+  def index(value)
+    puts value
+  end
 
   def last
     unless @last_item.nil?
