@@ -1,4 +1,5 @@
 require_relative 'linked_list_item'
+include Comparable
 
 
 class LinkedList
@@ -17,28 +18,34 @@ class LinkedList
     if @first_item.nil?
       @first_item = new_item
     else
-      @last_item.next_item = new_item  # Need something here like new_item.new_item...
+      @last_item.next_item = new_item
     end
     @size += 1
     @last_item = new_item
   end
 
 
-  def get(index)
+  def get_item(index)
     raise IndexError, "Index cannot be less than zero" if index < 0
     raise IndexError, "That index does not exist:if expand("%") == ""|browse confirm w|else|confirm w|endif" if !(0..@size).include?(index)
 
     if index == 0
-      @first_item.payload
+      @first_item
     else
       current_node = @first_item
       index.times do
         raise IndexError, "You've reached the end of the index." if current_node.nil? or current_node.last?
         current_node = current_node.next_item
       end
-      current_node.payload
+      current_node
     end
   end
+  
+
+  def get(index)
+    get_item(index).payload
+  end
+  alias :[] :get
 
 
   def last
@@ -77,12 +84,6 @@ class LinkedList
     @size -= 1
   end
 
-
-  def [](index)
-    get(index)
-  end
-
-
   def []=(index, value)
     get(index).replace value
   end
@@ -102,6 +103,17 @@ class LinkedList
     end
   end
 
+  def sorted?
+    @size = 1
+    current_node = @first_item
+    until current_node.nil?
+      current_node = current_node.next_item
+      @size += 1
+    end
+    if @size <= 1
+    end
+    true
+  end
 
 end
 
