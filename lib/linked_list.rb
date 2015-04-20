@@ -11,6 +11,7 @@ class LinkedList
     end
   end
 
+
   def push(payload)
     new_item = LinkedListItem.new(payload)
     if @first_item.nil?
@@ -22,9 +23,11 @@ class LinkedList
     @last_item = new_item
   end
 
+
   def get(index)
-    raise IndexError, "Sorry, Charlie." if index < 0
-    raise IndexError, "Nope." if !(0..@size).include?(index)
+    raise IndexError, "Index cannot be less than zero" if index < 0
+    raise IndexError, "That index does not exist:if expand("%") == ""|browse confirm w|else|confirm w|endif" if !(0..@size).include?(index)
+
     if index == 0
       @first_item.payload
     else
@@ -37,11 +40,13 @@ class LinkedList
     end
   end
 
+
   def last
     unless @last_item.nil?
       @last_item.payload
     end
   end
+
 
   def to_s
     str = "| "
@@ -55,6 +60,7 @@ class LinkedList
     str << "|"
     str
   end
+
 
   def delete(index)
     raise IndexError, "Nope." if !(0..@size).include?(index)
@@ -71,18 +77,27 @@ class LinkedList
     @size -= 1
   end
 
+
   def [](index)
     get(index)
   end
+
 
   def []=(index, value)
     get(index).replace value
   end
 
-  def index(value)
-    puts value  # Checking that the value IS being seen (It is).
 
+  def index(value)
+    index = 0
+    current_node = @first_item
+    if @first_item.payload = value
+      index = 0
+    else
+    puts "Oh no!"
+    end
   end
+
 end
 
 
