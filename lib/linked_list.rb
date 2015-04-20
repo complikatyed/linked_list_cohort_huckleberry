@@ -17,7 +17,7 @@ class LinkedList
     if @first_item.nil?
       @first_item = new_item
     else
-      @last_item.next_item = new_item
+      @last_item.next_item = new_item  # Need something here like new_item.new_item...
     end
     @size += 1
     @last_item = new_item
@@ -101,7 +101,8 @@ class LinkedList
      index
     end
   end
-  
+
+
 end
 
 
