@@ -7,7 +7,6 @@ class LinkedListTest < MiniTest::Unit::TestCase
     ll = LinkedList.new
     payload = "bob"
     ll.push(payload)
-    puts ll
     assert_equal(payload, ll.get(0))
   end
 
@@ -50,6 +49,14 @@ class LinkedListTest < MiniTest::Unit::TestCase
   end
 
   def test_06c_get_that_doesnt_exist
+    ll = LinkedList.new
+    ll.push("bar")
+    assert_raises IndexError do
+      ll.get(2)
+    end
+  end
+
+  def test_06d_get_that_doesnt_exist
     ll = LinkedList.new
     ll.push("bar")
     assert_raises IndexError do
@@ -115,7 +122,7 @@ class LinkedListTest < MiniTest::Unit::TestCase
     assert_equal "| foo |", ll.to_s
   end
 
-  def test_10b_initialize_takes_seed_arguments
+  def test_10b_initialize_takes_seed_arguments   # Highest passing test so far, broke the 05s
     ll = LinkedList.new("foo", "bar", "grille")
     assert_equal '| foo, bar, grille |', ll.to_s
   end
@@ -141,6 +148,24 @@ class LinkedListTest < MiniTest::Unit::TestCase
     ll.push("grille")
     ll[1] = "bar-be-que"
     assert_equal '| foo, bar-be-que, grille |', ll.to_s
+  end
+
+  def test_12c_bracket_assignment_results
+    ll = LinkedList.new
+    ll.push("foo")
+    ll.push("bar")
+    ll.push("grille")
+    ll[0] = "apple"
+    assert_equal '| apple, bar, grille |', ll.to_s
+  end
+
+  def test_12d_bracket_assignment_results
+    ll = LinkedList.new
+    ll.push("foo")
+    ll.push("bar")
+    ll.push("grille")
+    ll[2] = "grape"
+    assert_equal '| foo, bar, grape |', ll.to_s
   end
 
   def test_13a_delete_item_changes_size
