@@ -22,12 +22,18 @@ class LinkedList
     @last_item = new_item
   end
 
+
   def delete(index)
 
     if index == 0
       @first_item = @first_item.next_item  # This is passing test_13c_ (remove first item)
     else
-      puts "Sorry"
+      current_node = @first_item
+      (index -1).times do
+      raise IndexError, "Ooops" if current_node.nil? or current_node.last?
+        current_node = current_node.next_item
+      end
+      current_node.next_item = current_node.next_item.next_item
     end
     @size -= 1  # And passing test_13a (delete changes size)
   end
