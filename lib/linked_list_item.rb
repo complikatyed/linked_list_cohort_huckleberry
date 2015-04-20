@@ -2,7 +2,7 @@ class LinkedListItem
   include Comparable
   attr_accessor :payload, :next_item
 
-  def initialize(*data)
+  def initialize(data)
     @payload = data
   end
 
@@ -11,7 +11,7 @@ class LinkedListItem
   end
 
   def next_item=(lli)
-    raise ArgumentError, "can't next_item to self!" if self == lli
+    raise ArgumentError, "can't next_item to self!" if self === lli
     @next_item = lli
   end
   
