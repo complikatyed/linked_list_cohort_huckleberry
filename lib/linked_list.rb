@@ -33,7 +33,7 @@ class LinkedList
     else
       current_node = @first_item
       index.times do
-        raise IndexError, "Ooops" if current_node.nil? or current_node.last?
+        raise IndexError, "You've reached the end of the index." if current_node.nil? or current_node.last?
         current_node = current_node.next_item
       end
       current_node.payload
@@ -63,7 +63,7 @@ class LinkedList
 
 
   def delete(index)
-    raise IndexError, "Nope." if !(0..@size).include?(index)
+    raise IndexError, "The list does not include that index number" if !(0..@size).include?(index)
 
     if index == 0
       @first_item = @first_item.next_item
@@ -91,13 +91,17 @@ class LinkedList
   def index(value)
     index = 0
     current_node = @first_item
-    if @first_item.payload = value
+    if @first_item.payload == value
       index = 0
     else
-    puts "Oh no!"
+      until current_node.nil? || current_node.payload == value
+      current_node = current_node.next_item
+      index += 1
+       end
+      index
     end
   end
-
+  
 end
 
 
