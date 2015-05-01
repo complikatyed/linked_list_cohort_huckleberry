@@ -168,6 +168,15 @@ class LinkedListTest < MiniTest::Unit::TestCase
     assert_equal '| foo, bar, grape |', ll.to_s
   end
 
+  def test_12e_bracket_assignment_results
+    payload = "foo"
+    ll = LinkedList.new
+    ll.push payload
+    ll[0] = "bar"
+    assert_equal payload, 'foo'
+
+  end
+
   def test_13a_delete_item_changes_size
     ll = LinkedList.new
     ll.push("foo")

@@ -1,13 +1,11 @@
 require_relative 'linked_list_item'
-include Comparable
-
 
 class LinkedList
-  attr_accessor :payload, :next_item, :size, :ll
-
-  def initialize(*payload)
+  attr_accessor :size
+  
+  def initialize(*payloads)
     @size = 0
-    payload.each do |payload|
+    payloads.each do |payload|
       push(payload)
     end
   end
@@ -27,7 +25,7 @@ class LinkedList
 
   def get_item(index)
     raise IndexError, "Index cannot be less than zero" if index < 0
-    raise IndexError, "That index does not exist:if expand("%") == ""|browse confirm w|else|confirm w|endif" if !(0..@size).include?(index)
+    raise IndexError, "That index does not exist" unless (0..@size).include?(index)
 
     if index == 0
       @first_item
@@ -75,32 +73,28 @@ class LinkedList
     if index == 0
       @first_item = @first_item.next_item
     else
-      current_node = @first_item
-      (index -1).times do
-        current_node = current_node.next_item
-      end
-      current_node.next_item = current_node.next_item.next_item
+      previous_node = get_item(index - 1)
+      previous_node.next_item = previous_node.next_item.next_item
     end
     @size -= 1
   end
 
   def []=(index, value)
-    get(index).replace value
+    get_item(index).payload = value
   end
 
 
   def index(value)
     index = 0
     current_node = @first_item
-    until current_node.nil? || current_node.payload == value
+    until current_node.nil?
+      if current_node.payload == value
+        return index
+      end
       current_node = current_node.next_item
       index += 1
     end
-    if @size <= index
-      nil
-    else
-     index
-    end
+    nil
   end
 
   def sorted?
